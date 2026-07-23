@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+
+# Runtime scratch (council writes council-<runId> dirs into the repo under review)
+tmp/

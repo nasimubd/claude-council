@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "council",
+  "owner": { "name": "MD NASIM", "url": "https://github.com/nasimubd" },
+  "description": "Multi-agent, execution-gated code review for Claude Code.",
+  "plugins": [
+    {
+      "name": "council",
+      "source": "./plugins/council",
+      "description": "Multi-agent LLM council for code: diverse finder lenses, blind anonymized cross-examination with refute-first skeptics, and an execution-based evidence tribunal. Surface-first — reports findings with execution proof plus a plain-English + technical fix and operator context; the operator directs which findings to fix. Review, debug, and goal-audit modes.",
+      "version": "1.0.0",
+      "author": { "name": "MD NASIM", "url": "https://github.com/nasimubd" },
+      "license": "MIT",
+      "category": "quality",
+      "keywords": [
+        "council",
+        "multi-agent",
+        "code-review",
+        "adversarial",
+        "evidence",
+        "tribunal",
+        "peer-review",
+        "debugging",
+        "invariants",
+        "workflow"
+      ],
+      "strict": false
+    }
+  ]
+}

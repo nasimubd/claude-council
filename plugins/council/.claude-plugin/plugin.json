@@ -1,0 +1,25 @@
+{
+  "name": "council",
+  "displayName": "Council",
+  "version": "1.0.0",
+  "description": "Multi-agent LLM council for code: diverse finder lenses, blind anonymized cross-examination with refute-first skeptics, and an execution-based evidence tribunal. Surface-first — reports findings with execution proof plus a plain-English + technical fix and operator context; the operator directs which findings to fix. Review, debug, and goal-audit modes.",
+  "author": {
+    "name": "MD NASIM",
+    "url": "https://github.com/nasimubd"
+  },
+  "homepage": "https://github.com/nasimubd/claude-council",
+  "repository": "https://github.com/nasimubd/claude-council",
+  "license": "MIT",
+  "keywords": [
+    "council",
+    "multi-agent",
+    "code-review",
+    "adversarial",
+    "evidence",
+    "tribunal",
+    "peer-review",
+    "debugging",
+    "invariants",
+    "workflow"
+  ]
+}

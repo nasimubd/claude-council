@@ -1,0 +1,68 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Manifests are valid JSON
+        run: |
+          jq empty .claude-plugin/marketplace.json
+          jq empty plugins/council/.claude-plugin/plugin.json
+
+      - name: Version drift guard (plugin.json == marketplace entry)
+        run: |
+          plugin_ver=$(jq -r '.version' plugins/council/.claude-plugin/plugin.json)
+          market_ver=$(jq -r '.plugins[] | select(.name=="council") | .version' .claude-plugin/marketplace.json)
+          echo "plugin.json=$plugin_ver  marketplace=$market_ver"
+          if [ "$plugin_ver" != "$market_ver" ]; then
+            echo "::error::version mismatch: plugin.json=$plugin_ver marketplace=$market_ver"
+            exit 1
+          fi
+
+      - name: Marketplace source path exists
+        run: |
+          src=$(jq -r '.plugins[] | select(.name=="council") | .source' .claude-plugin/marketplace.json)
+          test -d "$src" || { echo "::error::source dir $src missing"; exit 1; }
+          test -f "$src/.claude-plugin/plugin.json" || { echo "::error::$src has no plugin.json"; exit 1; }
+
+      - name: Workflow scripts parse (strip export, legalize top-level return)
+        run: |
+          set -e
+          count=0
+          for f in $(git ls-files '*.workflow.mjs'); do
+            echo "checking $f"
+            # Workflow scripts open with `export const meta` (module goal) AND use a
+            # top-level `return` (script goal) — neither standard Node goal accepts both.
+            # Strip the `export` keyword, then wrap in an async function so the return is legal.
+            node -e '
+              const fs = require("fs");
+              let src = fs.readFileSync(process.argv[1], "utf8");
+              src = src.replace(/^export\s+(?=(?:const|let|var|function|class|async)\b)/gm, "");
+              new Function("return(async()=>{" + src + "\n})");
+            ' "$f"
+            count=$((count+1))
+          done
+          echo "parsed $count workflow script(s)"
+          test "$count" -ge 1 || { echo "::error::no workflow scripts found"; exit 1; }
+
+      - name: Each skill's referenced workflow script exists
+        run: |
+          set -e
+          for skill in plugins/council/skills/*/; do
+            name=$(basename "$skill")
+            script="${skill}scripts/${name}.workflow.mjs"
+            test -f "$script" || { echo "::error::missing $script"; exit 1; }
+            echo "ok: $script"
+          done
