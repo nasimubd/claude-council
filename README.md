@@ -25,6 +25,8 @@ goal → invariants → finder lenses → blind cross-exam → evidence tribunal
 
 Then invoke any of the three skills explicitly (they are `disable-model-invocation: true` — a deliberately expensive gate you opt into):
 
+The repository also carries a Codex-compatible manifest at `.codex-plugin/plugin.json`; install the repository as a local Codex plugin from its marketplace/catalog UI. The Claude marketplace entry and both package manifests intentionally use the same name and version.
+
 ## Skills
 
 | Command | What it does |

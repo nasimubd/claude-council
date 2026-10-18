@@ -1,0 +1,7 @@
+{
+  "name": "council",
+  "version": "1.0.0",
+  "description": "Multi-agent, execution-gated code review with review, debug, and goal-audit workflows.",
+  "repository": "https://github.com/nasimubd/claude-council",
+  "license": "MIT"
+}
