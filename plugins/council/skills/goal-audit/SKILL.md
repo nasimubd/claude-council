@@ -25,7 +25,7 @@ Given an end goal or spec, answer: **does the implementation actually meet it â€
 /usr/bin/env bash << 'EOF'
 set -euo pipefail
 REPO="$(git rev-parse --show-toplevel)"
-RUN_ID="$(date -u +%Y%m%d-%H%M%S)"
+RUN_ID="$(date -u +%Y%m%d-%H%M%S)-$$-${RANDOM}"
 mkdir -p "$REPO/tmp/council-$RUN_ID/repro"
 echo "REPO=$REPO RUN_ID=$RUN_ID"
 EOF

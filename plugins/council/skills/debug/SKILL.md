@@ -31,7 +31,7 @@ The elimination table is a deliverable, not waste — negative knowledge prevent
 /usr/bin/env bash << 'EOF'
 set -euo pipefail
 REPO="$(git rev-parse --show-toplevel)"
-RUN_ID="$(date -u +%Y%m%d-%H%M%S)"
+RUN_ID="$(date -u +%Y%m%d-%H%M%S)-$$-${RANDOM}"
 mkdir -p "$REPO/tmp/council-$RUN_ID/experiments"
 echo "REPO=$REPO RUN_ID=$RUN_ID"
 EOF

@@ -48,7 +48,9 @@ git -C "$REPO" rev-parse HEAD >/dev/null          # sanity: it is a git repo
 if [ -n "$(git -C "$REPO" status --porcelain)" ]; then
   echo "NOTE: working tree is dirty — review proceeds (taint guard baselines the current state)" >&2
 fi
-RUN_ID="$(date -u +%Y%m%d-%H%M%S)"
+# Include the shell PID and a random suffix: concurrent invocations must never
+# share scratch/clone paths (second-resolution timestamps are not sufficient).
+RUN_ID="$(date -u +%Y%m%d-%H%M%S)-$$-${RANDOM}"
 mkdir -p "$REPO/tmp/council-$RUN_ID"
 git -C "$REPO" check-ignore -q "tmp/council-$RUN_ID" \
   || echo "WARN: tmp/ not gitignored in this repo — scratch dir will show as untracked (taint guard accounts for it, but prefer ignoring tmp/)"
