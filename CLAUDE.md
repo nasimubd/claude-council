@@ -10,3 +10,7 @@ Read the nearest `AGENTS.md` and `CLAUDE.md` before changing a folder. Keep docu
 - `plugins/council/`: plugin package and maintainer rules.
 - `plugins/council/skills/`: user-invoked workflow skills.
 - `plugins/council/references/`: prose schemas, evidence, lenses, and reports.
+
+## Git and PR protocol
+
+Run `.github/workflows/validate.yml` before implementation and record its URL. Open the PR before implementation changes. Use a specific Conventional Commit title with an allowed type: `feat`, `fix`, `docs`, `test`, `refactor`, `perf`, `build`, `ci`, `chore`, or `revert`. Every PR body must contain Summary, Problem, Implementation, Validation, Risks, and Extended description after merge. Rebase onto current `main`, then squash merge only; never use merge commits or rebase-only merges.
