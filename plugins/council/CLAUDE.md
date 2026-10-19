@@ -35,6 +35,7 @@ goal → invariants → finder lenses → blind cross-exam → evidence tribunal
 | `references/report-template.md` | Chairman report skeletons (all 3 modes) |
 | `references/sota-provenance.md` | Mechanism → paper/source → implementation-site map |
 | `references/fallback-fanout.md` | Manual Task fan-out when the Workflow tool is unavailable |
+| `tools/preflight.mjs` + `tools/preflight.test.mjs` | Deterministic checks, risk scoring, cache keys, and bounded output helpers |
 
 ## Model/effort matrix (tuning SSoT)
 
@@ -78,3 +79,7 @@ Verified 2026-07-09 via a live probe run: `agent()` with `schema` returns valida
 Council has three explicit skills: `review`, `debug`, and `goal-audit`. Review and goal-audit never edit tracked files. Debug proposes a fix by default and edits only with `--fix`, followed by independent verification.
 
 Workflow scripts must retain the first-statement `meta` export, avoid wall-clock APIs, preserve taint guards, and keep schemas synchronized with `references/schemas.md`. Skill preflight IDs must be unique so concurrent runs cannot share scratch paths. Update `README.md`, `CLAUDE.md`, and manifests when user-facing behavior or install metadata changes.
+
+## Phase artifact status
+
+The historical `phase-4` through `phase-10` directories are retained as migration records from an earlier staged rollout; their fixture files are not production implementations. New work must use the shared tools and workflow integration, and must not claim a phase complete from fixture presence alone.
