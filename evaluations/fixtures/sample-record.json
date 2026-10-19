@@ -1,0 +1,7 @@
+{
+  "findings": [
+    {"id": "BUG-001", "confirmed": true, "evidence_class": "failing-test-repro"}
+  ],
+  "tokenCount": 12000,
+  "wallClockMs": 42000
+}

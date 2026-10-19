@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "sample-review",
+  "description": "Small deterministic fixture for validating evaluation plumbing.",
+  "expectedFindings": [
+    {"id": "BUG-001", "severity": "major", "category": "correctness", "files": ["src/checkout.js"]}
+  ],
+  "expectedCleanAreas": ["docs/README.md"]
+}
