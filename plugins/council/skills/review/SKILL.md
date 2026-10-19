@@ -133,3 +133,7 @@ Fall back silently (never ask the user to install anything) to the manual fan-ou
 ## Post-execution reflection
 
 After the report is delivered, note in one line what the council missed or over-flagged (if known) — feed real misses back into [lenses.md](../../references/lenses.md) as lens-card refinements via a dated evolution-log entry in the plugin CLAUDE.md.
+
+### Deterministic preflight output
+
+Before invoking `Workflow`, run `node "$CLAUDE_PLUGIN_ROOT/integration/review-preflight.mjs" "$REPO"` and include its bounded JSON output in the workflow `args.preflight`. If it returns no diff, stop and report that the review has no changed surface. The workflow remains the authority for evidence; preflight only prioritizes context and model effort.
