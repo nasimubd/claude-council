@@ -83,3 +83,7 @@ Workflow scripts must retain the first-statement `meta` export, avoid wall-clock
 ## Phase artifact status
 
 The historical `phase-4` through `phase-10` directories are retained as migration records from an earlier staged rollout; their fixture files are not production implementations. New work must use the shared tools and workflow integration, and must not claim a phase complete from fixture presence alone.
+
+## PR quality gate
+
+The validation workflow must pass before implementation begins. PR titles follow Conventional Commits and state the behavior changed. PR bodies include Summary, Problem, Implementation, Validation, Risks, and Extended description after merge. Retain that extended section as the durable post-merge record. Squash merge is mandatory after rebasing onto current `main`; filler titles and placeholder-only phase commits are prohibited.
