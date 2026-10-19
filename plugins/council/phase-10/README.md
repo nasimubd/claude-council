@@ -1,3 +1,3 @@
-# Phase 10: dual-platform-docs
+# Phase 10: dual-platform documentation
 
-This phase preserves the report-first evidence contract.
+Claude Code and Codex installation and contribution guidance are documented here.
