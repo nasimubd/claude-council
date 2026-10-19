@@ -38,6 +38,11 @@ Findings are **CONFIRMED** only when proven by execution (failing-test repro or 
 
 ## Step 1 — Preflight (you, before invoking the workflow)
 
+Before invoking the Workflow, run the shared deterministic preflight utilities at
+`../../tools/preflight.mjs` (or the equivalent repository checks) and pass their bounded,
+structured results into the context pack. Cheap checks must run before model fan-out; do not
+ask finder agents to rediscover formatter, lint, type, test, secret, dependency, or risk results.
+
 ```bash
 /usr/bin/env bash << 'EOF'
 set -euo pipefail
